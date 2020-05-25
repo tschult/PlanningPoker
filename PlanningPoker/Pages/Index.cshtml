@@ -1,0 +1,40 @@
+﻿@page
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+</head>
+<body>
+<div id="entrance">
+    <label for="userInput">User</label>
+    <input type="text" id="userInput"/>
+    <input type="button" id="enterButton" value="Beitreten"/>
+</div>
+
+<div id="pokerRoom" style="display: none">
+    <h3 id="spn-user">&nbsp;</h3>
+    <div>&nbsp;</div>
+    <div>
+        <div>
+            <input type="button" id="startNewRoundButton" value="Starte eine neue Runde" />
+            <input type="button" id="endRoundButton" value="Beende die Runde" style="display: none" />
+        </div>
+    </div>
+    <hr />
+    <div id="cards" style="display: none">
+        <label for="cardSelect">Karte auswählen:</label>
+        <select id="cardSelect"></select>
+        <input type="button" id="lockCardButton" value="OK" />
+        <input type="button" id="unlockCardButton" value="Zurücksetzen" style="display: none" />
+        <hr />
+    </div>
+    
+    <ul id="messagesList"></ul>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/poker.js"></script>
+</body>
+</html>
