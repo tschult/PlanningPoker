@@ -9,7 +9,8 @@ Zum Ablauf:
 - Alle Benutzer können die Abstimmung jederzeit beenden
 - Nach dem Ende der Abstimmung werden alle "eingeloggten" Karten aufgedeckt
 ## SignalR PokerHub.cs
-Stellt Methoden bereit, die von einem verbundenen Client aufgerufen werden, um Nachrichten an alle Clients zu senden.
+Stellt Methoden bereit, die von einem verbundenen Client aufgerufen werden, um Nachrichten an alle Clients zu senden.  
+Erreichbar unter ~/PokerHub
 ### Enter(string user)
 Muss direkt nach dem Verbindungsaufbau aufgerufen werden und benachrichtigt alle Clients über den neuen user mit Namen und Verbindungs-Id (zur späteren Zuordnung, falls die Verbindung beendet wird).  
 Löst ``ReceiveNewUser`` aus
