@@ -23,7 +23,14 @@ namespace PlanningPoker
             {
                 options.AddDefaultPolicy(builder =>
                     {
-                        builder.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000").AllowCredentials();
+                        builder
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .WithOrigins(
+                                "http://localhost:3000", 
+                                "http://pc19720:3000",
+                                "https://scrumpokeronline.azurewebsites.net")
+                            .AllowCredentials();
                     });
             });
             services.AddRazorPages();
