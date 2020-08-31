@@ -37,5 +37,10 @@ namespace PlanningPoker.Hubs
         {
             await Clients.All.SendAsync("ReceiveEnd", user);
         }
+
+        public async Task SendMessage(string user, string msg)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, msg);
+        }
     }
 }
