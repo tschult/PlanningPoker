@@ -76,7 +76,7 @@ function App() {
     setIsLoggedIn(true);
     try {
       const connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:5000/pokerHub")
+        .withUrl("/pokerHub")
         .build();
       connection.onclose(async () => {
         await start(connection);

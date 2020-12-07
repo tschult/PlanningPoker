@@ -26,6 +26,7 @@ namespace PlanningPoker
                         builder.AllowAnyMethod()
                             .AllowAnyHeader()
                             .WithOrigins("http://localhost:5000")
+                            .WithOrigins("https://poker.tinoschult.de")
                             .AllowCredentials()));
 
             services.AddSpaStaticFiles(configuration =>
