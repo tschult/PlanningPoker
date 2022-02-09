@@ -3,7 +3,6 @@ import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/cor
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
-import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../contexts/UserContext';
 import useStyles from '../hooks/useStyles';
 
