@@ -3,36 +3,32 @@ import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/cor
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../contexts/UserContext';
+import useStyles from '../hooks/useStyles';
 
-const useStyles = makeStyles((theme) => ({
-    green: {
-      color: '#fff',
-      backgroundColor: theme.palette.primary.main,
-    },
-  }));
 
 function User(props) {
     const classes = useStyles();
     const { user } = useContext(UserContext);
+    const { player, isRunning } = props;
 
-    return (
-        <ListItem key={props.name}>
-            <ListItemAvatar>
-                <Avatar className={props.user.isCardLocked ? classes.green : ''}>
-                    {props.user.selectedCard 
-                        ? props.user.selectedCard === "Kaffee" 
-                            ? <FreeBreakfastIcon />
-                            : <div>{props.user.selectedCard}</div> 
-                        : props.user.isCardLocked 
-                            ? <LockOutlinedIcon /> 
-                            : <LockOpenOutlinedIcon />}
-                </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={props.user.name === user ? "Ich" : props.user.name} />
-        </ListItem>
-    );
+    return <ListItem key={player.id}>
+        <ListItemAvatar>
+            <Avatar className={player.selectedCard ? classes.green : ''}>
+                {!isRunning
+                    ? player.selectedCard === "Kaffee"
+                        ? <FreeBreakfastIcon />
+                        : player.selectedCard
+                            ? <div>{player.selectedCard}</div>
+                            : <LockOpenOutlinedIcon />
+                    : player.selectedCard
+                        ? <LockOutlinedIcon />
+                        : <LockOpenOutlinedIcon />}
+            </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={player.name === user ? "Ich" : player.name} />
+    </ListItem>
 
 };
 

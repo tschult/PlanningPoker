@@ -1,16 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import clsx from 'clsx';
-import { CssBaseline, Grid, Paper, ThemeProvider, Container, AppBar, Toolbar, Typography, CircularProgress, IconButton, useMediaQuery, Drawer, Divider } from '@material-ui/core';
+import { CssBaseline, Grid, ThemeProvider, Container, AppBar, Toolbar, Typography, IconButton, useMediaQuery, Drawer, Divider } from '@material-ui/core';
 import Login from './components/Login';
 import * as signalR from '@aspnet/signalr';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { teal } from '@material-ui/core/colors';
 import { UserContext } from './contexts/UserContext';
-import UserList from './components/UserList';
 import { ConnectionContext } from './contexts/ConnectionContext';
-import CardSelection from './components/CardSelection';
 import StyleIcon from '@material-ui/icons/Style';
-import StartStopFab from './components/StartStopFab';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -19,31 +16,9 @@ import ChatIcon from '@material-ui/icons/Chat';
 import InstallPWAButton from './components/InstallPWAButton';
 import { deDE } from '@material-ui/core/locale';
 import MessageBoard from './components/MessageBoard';
+import Room from './components/Room';
+import useStyles from './hooks/useStyles';
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: theme.spacing(2)
-  },
-  paper: {
-    padding: theme.spacing(2)
-  },
-  menuIcon: {
-    marginRight: theme.spacing(4)
-  },
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2)
-  },
-  appBar: {
-    flexGrow: 1
-  },
-  title: {
-    flexGrow: 1
-  }
-}));
 
 function App() {
 
@@ -136,27 +111,15 @@ function App() {
             <Container>
               {!isLoggedIn &&
                 <Grid container justify="center" alignItems="center" spacing={4}>
-                  <Grid item xs={12} md={6} lg={3} >
+                  <Grid item xs={12} md={6} lg={4} >
                     <Login onLoginClick={onLoginClick} />
                   </Grid>
                 </Grid>
               }
-              {isLoggedIn &&
-                <Grid container spacing={4}>
-                  <Grid item xs={12} sm={6} md={4}>
-                    <Paper className={classes.paper}>
-                      {signalRConnection ? <UserList signalRConnection={signalRConnection} user={user} /> : <CircularProgress />}
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={8} >
-                    <Paper className={classes.paper}>
-                      {signalRConnection ? <CardSelection signalRConnection={signalRConnection} user={user} /> : <CircularProgress />}
-                    </Paper>
-                  </Grid>
-                </Grid>
+              {isLoggedIn &&                
+                  <Room />
               }
             </Container>
-            {signalRConnection && <StartStopFab className={classes.fab} signalRConnection={signalRConnection} user={user} />}
           </div>
           {isLoggedIn && signalRConnection && <Drawer variant="persistent" open={isDrawerOpen} anchor="right" >
             <div className={classes.drawerHeader}>
@@ -165,8 +128,8 @@ function App() {
               </IconButton>
             </div>
             <Divider />
-            <MessageBoard signalRConnection={signalRConnection} user={user} />          
-            <Divider/>
+            <MessageBoard signalRConnection={signalRConnection} user={user} />
+            <Divider />
 
           </Drawer>}
         </ConnectionContext.Provider>
