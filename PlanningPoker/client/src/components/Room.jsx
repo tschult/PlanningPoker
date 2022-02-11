@@ -63,7 +63,7 @@ const Room = () => {
         if (roomState.isRunning) {
             return <SelectCard availableCards={roomState.cards} onSelectionChanged={onSelectionChanged} selectedCard={selectedCard} />
         } else {
-            if (roomState.lastResult.length) {
+            if (roomState.lastResult?.length) {
                 return <Results results={roomState.lastResult} />
             }
         }
