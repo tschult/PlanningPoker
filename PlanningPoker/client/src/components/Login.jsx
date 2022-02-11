@@ -25,13 +25,19 @@ function Login(props) {
     const classes = useStyles();
     const { user, setUser } = useContext(UserContext);
 
+    const onKeyDown = (e) => { 
+        if (e.key == "Enter") {
+            props.onLoginClick();
+        } 
+    }
+
     return (
         <Card variant="outlined" >
             <CardContent className={classes.content}>
                 <Avatar className={classes.avatar}>
                     <PersonIcon />
                 </Avatar>
-                <TextField fullWidth id="userInput" label="Name" variant="outlined" value={user} onChange={e => setUser(e.target.value)} />
+                <TextField fullWidth id="userInput" label="Name" variant="outlined" value={user} onKeyDown={onKeyDown} onChange={e => setUser(e.target.value)} />
             </CardContent>
             <CardActions>
                 <Button fullWidth variant="contained" color="primary" onClick={props.onLoginClick} className={classes.button}>Beitreten</Button>
